@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { getAllTables } from '../../../redux/tablesRedux';
-import TableListItem from '../../views/TableListItem/TableListItem';
+import TableListItem from '../TableListItem/TableListItem';
 
 const Tables = () => {
   const tables = useSelector(getAllTables);

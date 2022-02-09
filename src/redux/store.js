@@ -3,8 +3,9 @@ import initialState from './initialState';
 import thunk from 'redux-thunk';
 
 import tablesReducer from './tablesRedux';
+import statusReducer from './statusRedux';
 
-const subreducers = { tables: tablesReducer };
+const subreducers = { tables: tablesReducer, status: statusReducer };
 
 const reducer = combineReducers(subreducers);
 const store = createStore(

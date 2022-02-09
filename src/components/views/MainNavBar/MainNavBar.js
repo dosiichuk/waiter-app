@@ -19,6 +19,9 @@ const MainNavbar = () => {
             <Nav.Link as={NavLink} to="/">
               Home
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/tables/new">
+              Add table
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

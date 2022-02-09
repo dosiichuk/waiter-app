@@ -9,6 +9,7 @@ import Footer from './components/views/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import NotFound from './components/pages/NotFound/NotFound';
 import TableInfo from './components/pages/TableInfo/TableInfo';
+import AddTable from './components/pages/AddTable/AddTable';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tables/:id" element={<TableInfo />} />
+        <Route path="/tables/new" element={<AddTable />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
