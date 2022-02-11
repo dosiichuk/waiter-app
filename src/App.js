@@ -21,8 +21,8 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tables/:id" element={<TableInfo />} />
         <Route path="/tables/new" element={<AddTable />} />
+        <Route path="/tables/:id" element={<TableInfo />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

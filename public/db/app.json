@@ -4,14 +4,7 @@
       "id": 9,
       "status": "Cleaning",
       "peopleAmount": 0,
-      "maxPeopleAmount": 3,
-      "bill": 0
-    },
-    {
-      "id": 10,
-      "status": "Free",
-      "peopleAmount": 0,
-      "maxPeopleAmount": 3,
+      "maxPeopleAmount": 6,
       "bill": 0
     },
     {
@@ -23,8 +16,8 @@
     },
     {
       "id": 13,
-      "status": "Cleaning",
-      "peopleAmount": 0,
+      "status": "Busy",
+      "peopleAmount": 2,
       "maxPeopleAmount": 3,
       "bill": 100
     }

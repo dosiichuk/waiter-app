@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import { getTableById } from '../../../redux/tablesRedux';
 import { getAllStatuses } from '../../../redux/statusRedux';
 import { patchTableRequest, addTableRequest } from '../../../redux/tablesRedux';
+import ChangeTableStatusModal from '../ChangeTableStatusModal/ChangeTableStatusModal';
 
 const TableForm = ({ id, action }) => {
   const defaultTableIntance = {
@@ -31,8 +32,10 @@ const TableForm = ({ id, action }) => {
     table.maxPeopleAmount || 0
   );
   const [bill, setBill] = useState(table.bill || 0);
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit: validate,
@@ -44,7 +47,7 @@ const TableForm = ({ id, action }) => {
       status,
       peopleAmount: parseInt(peopleAmount),
       maxPeopleAmount: parseInt(maxPeopleAmount),
-      bill: parseInt(bill),
+      bill: parseFloat(bill),
     };
     if (action === 'Update') {
       dispatch(patchTableRequest(tableData));
@@ -53,6 +56,11 @@ const TableForm = ({ id, action }) => {
     }
 
     navigate('/');
+  };
+  const changeCategoryHandler = (status) => {
+    setBill(0);
+    setPeopleAmount(0);
+    setShowModal(false);
   };
   if (!table) return <Container>Table with this is not found</Container>;
 
@@ -70,7 +78,14 @@ const TableForm = ({ id, action }) => {
               name="status"
               className="w-75"
               value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value !== 'Busy' && status === 'Busy') {
+                  setShowModal(true);
+                  setStatus(e.target.value);
+                  return;
+                }
+                setStatus(e.target.value);
+              }}
             >
               {statuses.map((item) => (
                 <option key={item} value={item}>
@@ -87,7 +102,8 @@ const TableForm = ({ id, action }) => {
           >
             <Form.Label className="mb-0 p-2">People:</Form.Label>
             <Form.Control
-              style={{ width: '40px' }}
+              type="number"
+              style={{ width: '60px' }}
               {...register('peopleAmount', {
                 required: true,
                 pattern: /[0-9]/,
@@ -102,7 +118,7 @@ const TableForm = ({ id, action }) => {
             )}
             <span className="p-2"> / </span>
             <Form.Control
-              style={{ width: '40px' }}
+              style={{ width: '60px' }}
               {...register('maxPeopleAmount', {
                 required: true,
                 max: maxPeopleAmount,
@@ -128,7 +144,7 @@ const TableForm = ({ id, action }) => {
               <span className="p-2">$</span>
               <Form.Control
                 className="text-center"
-                style={{ width: '50px' }}
+                style={{ width: '100px' }}
                 value={bill}
                 type="number"
                 onChange={(e) => setBill(e.target.value)}
@@ -141,6 +157,13 @@ const TableForm = ({ id, action }) => {
           {action}
         </Button>
       </Form>
+      <ChangeTableStatusModal
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        handleShow={() => setShowModal(true)}
+        changeCategory={() => changeCategoryHandler(status)}
+        cancelChange={() => setStatus('Busy')}
+      />
     </Container>
   );
 };
