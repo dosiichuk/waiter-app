@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -6,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import { deleteTableRequest } from '../../../redux/tablesRedux';
 import DeleteModal from '../DeleteModal/DeleteModal';
+import styles from './TableListItem.module.scss';
 
 const TableListItem = ({ id, status }) => {
   const dispatch = useDispatch();
@@ -14,20 +16,22 @@ const TableListItem = ({ id, status }) => {
     dispatch(deleteTableRequest(id));
   };
   return (
-    <ListGroup.Item className="d-flex flex-row align-items-center justify-content-between">
+    <ListGroup.Item className="d-flex flex-column flex-lg-row align-items-center justify-content-between">
       <div className="d-flex flex-row align-items-center justify-content-between">
-        <h2 className="d-inline-block mb-0 p-3">Table {id}</h2>{' '}
-        <p className="d-inline-block mb-0 p-3">
+        <h2 className={clsx('d-inline-block mb-0 p-3', styles.textTitle)}>
+          Table {id}
+        </h2>{' '}
+        <p className={clsx('d-inline-block mb-0 p-3', styles.text)}>
           <strong>Status:</strong> {status}
         </p>
       </div>
 
       <div>
         <Button as={Link} to={`/tables/${id}`} className="m-1">
-          Show more
+          <span className={styles.text}>Show more</span>
         </Button>
         <Button onClick={() => setShowModal(true)} className="btn-danger m-1">
-          Delete
+          <span className={styles.text}>Delete</span>
         </Button>
       </div>
       <DeleteModal

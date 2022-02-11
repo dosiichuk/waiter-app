@@ -61,11 +61,14 @@ const TableForm = ({ id, action }) => {
       <h1>Table {id}</h1>
       <Form onSubmit={validate(handleSubmit)}>
         <Row>
-          <Form.Group className="mb-3 col-9 col-md-6" controlId="status">
-            <Form.Label className="col-6">Status:</Form.Label>
+          <Form.Group
+            className="mb-3 col-12 col-md-6 d-flex flex-row justify-content-start align-items-center"
+            controlId="status"
+          >
+            <Form.Label className="mb-0 p-2">Status:</Form.Label>
             <Form.Select
-              className="col-6"
               name="status"
+              className="w-75"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
@@ -78,9 +81,13 @@ const TableForm = ({ id, action }) => {
           </Form.Group>
         </Row>
         <Row>
-          <Form.Group className="mb-3 col-12 col-md-6" controlId="peopleAmount">
-            <Form.Label>People:</Form.Label>
+          <Form.Group
+            className="mb-3 col-12 col-md-6 d-flex flex-row align-items-center"
+            controlId="peopleAmount"
+          >
+            <Form.Label className="mb-0 p-2">People:</Form.Label>
             <Form.Control
+              style={{ width: '40px' }}
               {...register('peopleAmount', {
                 required: true,
                 pattern: /[0-9]/,
@@ -93,7 +100,9 @@ const TableForm = ({ id, action }) => {
                 Number of people can only be an integer
               </small>
             )}
+            <span className="p-2"> / </span>
             <Form.Control
+              style={{ width: '40px' }}
               {...register('maxPeopleAmount', {
                 required: true,
                 max: maxPeopleAmount,
@@ -111,10 +120,15 @@ const TableForm = ({ id, action }) => {
         </Row>
         {status === 'Busy' && (
           <Row>
-            <Form.Group className="mb-3 col-12 col-md-6" controlId="bill">
-              <Form.Label>Bill:</Form.Label>
-              $
+            <Form.Group
+              className="mb-3 col-12 col-lg-6 d-flex flex-row align-items-center"
+              controlId="bill"
+            >
+              <Form.Label className="mb-0 p-2">Bill:</Form.Label>
+              <span className="p-2">$</span>
               <Form.Control
+                className="text-center"
+                style={{ width: '50px' }}
                 value={bill}
                 type="number"
                 onChange={(e) => setBill(e.target.value)}

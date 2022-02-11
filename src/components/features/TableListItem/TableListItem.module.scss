@@ -1,0 +1,16 @@
+.textTitle {
+  @media (max-width: 450px) {
+    font-size: 100%;
+    padding: 1rem;
+  }
+}
+.text {
+  @media (max-width: 450px) {
+    font-size: 80%;
+  }
+}
+Button {
+  @media (max-width: 450px) {
+    padding: 0.25rem;
+  }
+}

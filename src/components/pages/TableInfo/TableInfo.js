@@ -6,7 +6,7 @@ import TableForm from '../../features/TableForm/TableForm';
 const TableInfo = () => {
   const { id } = useParams();
   return (
-    <Container>
+    <Container className="mx-auto">
       <TableForm id={id} action="Update" />
     </Container>
   );

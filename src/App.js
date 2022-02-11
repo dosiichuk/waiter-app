@@ -17,7 +17,7 @@ const App = () => {
   useEffect(() => dispatch(fetchTables()), [dispatch]);
 
   return (
-    <Container>
+    <Container className="d-flex vh-100 flex-column justify-content-between">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
