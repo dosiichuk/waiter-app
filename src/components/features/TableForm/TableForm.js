@@ -62,6 +62,19 @@ const TableForm = ({ id, action }) => {
     setPeopleAmount(0);
     setShowModal(false);
   };
+  const peopleAmountHandler = (e) => {
+    if (e.target.value > maxPeopleAmount) {
+      setPeopleAmount(maxPeopleAmount);
+      return;
+    }
+    setPeopleAmount(e.target.value);
+  };
+  const maxPeopleAmountHandler = (e) => {
+    setMaxPeopleAmount(e.target.value);
+    // if (peopleAmount > maxPeopleAmount && maxPeopleAmount) {
+    //   setPeopleAmount(e.target.value);
+    // }
+  };
   if (!table) return <Container>Table with this is not found</Container>;
 
   return (
@@ -97,7 +110,7 @@ const TableForm = ({ id, action }) => {
         </Row>
         <Row>
           <Form.Group
-            className="mb-3 col-12 col-md-6 d-flex flex-row align-items-center"
+            className="mb-1 col-12 col-md-6 d-flex flex-row align-items-center"
             controlId="peopleAmount"
           >
             <Form.Label className="mb-0 p-2">People:</Form.Label>
@@ -106,34 +119,38 @@ const TableForm = ({ id, action }) => {
               style={{ width: '60px' }}
               {...register('peopleAmount', {
                 required: true,
-                pattern: /[0-9]/,
+                min: 0,
+                max: maxPeopleAmount,
               })}
               value={peopleAmount}
-              onChange={(e) => setPeopleAmount(e.target.value)}
+              onChange={peopleAmountHandler}
             />
-            {errors.peopleAmount && (
-              <small className="d-block form-text text-danger mt-2">
-                Number of people can only be an integer
-              </small>
-            )}
+
             <span className="p-2"> / </span>
             <Form.Control
               style={{ width: '60px' }}
               {...register('maxPeopleAmount', {
                 required: true,
-                max: maxPeopleAmount,
+                min: 0,
+                max: 10,
               })}
               type="number"
               value={maxPeopleAmount}
-              onChange={(e) => setMaxPeopleAmount(e.target.value)}
+              onChange={maxPeopleAmountHandler}
             />
-            {errors.maxPeopleAmount && (
-              <small className="d-block form-text text-danger mt-2">
-                Max number cannot exceed default capcity
-              </small>
-            )}
           </Form.Group>
         </Row>
+        {errors.peopleAmount && (
+          <small className="d-block form-text text-danger mt-0 mb-2">
+            Number of people must be between 0 and table capacity
+          </small>
+        )}
+        {errors.maxPeopleAmount && (
+          <small className="d-block form-text text-danger mt-0 mb-2">
+            Max number of people must be between 0 and 10
+          </small>
+        )}
+
         {status === 'Busy' && (
           <Row>
             <Form.Group
@@ -153,7 +170,7 @@ const TableForm = ({ id, action }) => {
           </Row>
         )}
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mt-3">
           {action}
         </Button>
       </Form>
