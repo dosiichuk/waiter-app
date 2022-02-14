@@ -2,9 +2,9 @@
   "tables": [
     {
       "id": 9,
-      "status": "Cleaning",
-      "peopleAmount": 4,
-      "maxPeopleAmount": 7,
+      "status": "Free",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 3,
       "bill": 0
     },
     {

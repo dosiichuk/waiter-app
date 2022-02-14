@@ -1,14 +1,14 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import shortid from 'shortid';
+import PropTypes from 'prop-types';
 import { Row } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
 import { Container } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+
 import { getTableById } from '../../../redux/tablesRedux';
 import { getAllStatuses } from '../../../redux/statusRedux';
 import { patchTableRequest, addTableRequest } from '../../../redux/tablesRedux';
@@ -71,10 +71,12 @@ const TableForm = ({ id, action }) => {
   };
   const maxPeopleAmountHandler = (e) => {
     setMaxPeopleAmount(e.target.value);
-    // if (peopleAmount > maxPeopleAmount && maxPeopleAmount) {
-    //   setPeopleAmount(e.target.value);
-    // }
   };
+  useEffect(() => {
+    if (peopleAmount > maxPeopleAmount && maxPeopleAmount) {
+      setPeopleAmount(maxPeopleAmount);
+    }
+  }, [peopleAmount, maxPeopleAmount]);
   if (!table) return <Container>Table with this is not found</Container>;
 
   return (
