@@ -41,7 +41,7 @@ const TableForm = ({ id, action }) => {
     handleSubmit: validate,
     formState: { errors },
   } = useForm();
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const tableData = {
       id: parseInt(id),
       status,

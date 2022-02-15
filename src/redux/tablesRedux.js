@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 //action names
 const createActionName = (actionName) => `app/tables/${actionName}`;
 
@@ -30,8 +31,9 @@ export const deleteTable = (payload) => ({
 });
 
 export const fetchTables = () => {
+  console.log(API_URL);
   return (dispatch) => {
-    fetch('http://localhost:3131/api/tables')
+    fetch(`${API_URL}/tables`)
       .then((response) => response.json())
       .then((tables) => dispatch(updateTables(tables)));
   };
@@ -45,7 +47,7 @@ export const patchTableRequest = (tableData) => {
       },
       body: JSON.stringify(tableData),
     };
-    fetch(`http://localhost:3131/tables/${tableData.id}`, options).then(() =>
+    fetch(`${API_URL}/tables/${tableData.id}`, options).then(() =>
       dispatch(updateSingleTable(tableData))
     );
   };
@@ -60,7 +62,7 @@ export const addTableRequest = (tableData) => {
       },
       body: JSON.stringify(tableData),
     };
-    fetch(`http://localhost:3131/tables`, options).then(() =>
+    fetch(`${API_URL}/tables`, options).then(() =>
       dispatch(addTable(tableData))
     );
   };
@@ -74,7 +76,7 @@ export const deleteTableRequest = (id) => {
         'Content-Type': 'application/json',
       },
     };
-    fetch(`http://localhost:3131/tables/${id}`, options).then(() =>
+    fetch(`${API_URL}/tables/${id}`, options).then(() =>
       dispatch(deleteTable(id))
     );
   };

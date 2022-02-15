@@ -1,32 +1,53 @@
 {
   "tables": [
     {
-      "id": 9,
-      "status": "Free",
-      "peopleAmount": 0,
-      "maxPeopleAmount": 3,
-      "bill": 0
-    },
-    {
-      "id": 12,
-      "status": "Free",
-      "peopleAmount": 4,
-      "maxPeopleAmount": 4,
-      "bill": 0
-    },
-    {
-      "id": 13,
-      "status": "Busy",
-      "peopleAmount": 2,
-      "maxPeopleAmount": 3,
-      "bill": 100
-    },
-    {
       "id": 14,
       "status": "Free",
       "peopleAmount": 0,
       "maxPeopleAmount": 9,
       "bill": 0
+    },
+    {
+      "id": 15,
+      "status": "Busy",
+      "peopleAmount": 2,
+      "maxPeopleAmount": 3,
+      "bill": 122
+    },
+    {
+      "id": 16,
+      "status": "Free",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 3,
+      "bill": 0
+    },
+    {
+      "id": 17,
+      "status": "Busy",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 3,
+      "bill": 678
+    },
+    {
+      "id": 18,
+      "status": "Free",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 3,
+      "bill": 0
+    },
+    {
+      "id": 19,
+      "status": "Free",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 3,
+      "bill": 0
+    },
+    {
+      "id": 20,
+      "status": "Busy",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 3,
+      "bill": 10
     }
   ]
 }
