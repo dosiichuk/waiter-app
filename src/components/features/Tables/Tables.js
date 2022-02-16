@@ -1,19 +1,16 @@
 import { useSelector } from 'react-redux';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Spinner } from 'react-bootstrap';
+
 import { getAllTables } from '../../../redux/tablesRedux';
 import TableListItem from '../TableListItem/TableListItem';
+import SpinnerComponent from '../../common/SpinnerComponent/SpinnerComponent';
 
 const Tables = () => {
   const tables = useSelector(getAllTables);
 
   return (
     <ListGroup>
-      {tables.length === 0 && (
-        <Spinner animation="border" role="status" className="m-auto">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )}
+      {tables.length === 0 && <SpinnerComponent />}
       {tables.map((table) => (
         <TableListItem key={table.id} {...table} />
       ))}

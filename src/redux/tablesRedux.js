@@ -31,7 +31,6 @@ export const deleteTable = (payload) => ({
 });
 
 export const fetchTables = () => {
-  console.log(API_URL);
   return (dispatch) => {
     fetch(`${API_URL}/tables`)
       .then((response) => response.json())

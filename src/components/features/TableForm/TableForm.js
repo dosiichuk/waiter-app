@@ -13,8 +13,10 @@ import { getTableById } from '../../../redux/tablesRedux';
 import { getAllStatuses } from '../../../redux/statusRedux';
 import { patchTableRequest, addTableRequest } from '../../../redux/tablesRedux';
 import ChangeTableStatusModal from '../ChangeTableStatusModal/ChangeTableStatusModal';
+import SpinnerComponent from '../../common/SpinnerComponent/SpinnerComponent';
 
 const TableForm = ({ id, action }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const defaultTableIntance = {
     id: shortid,
     status: 'Free',
@@ -42,6 +44,7 @@ const TableForm = ({ id, action }) => {
     formState: { errors },
   } = useForm();
   const handleSubmit = () => {
+    setIsLoading(true);
     const tableData = {
       id: parseInt(id),
       status,
@@ -82,6 +85,7 @@ const TableForm = ({ id, action }) => {
   return (
     <Container>
       <h1>Table {id}</h1>
+      {isLoading && <SpinnerComponent />}
       <Form onSubmit={validate(handleSubmit)}>
         <Row>
           <Form.Group
